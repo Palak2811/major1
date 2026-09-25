@@ -25,4 +25,4 @@ Thumbs.db
 # Uploaded resumes
 backend/uploads/
 uploads/
-tests/.uploads/
+backend/tests/.uploads/
