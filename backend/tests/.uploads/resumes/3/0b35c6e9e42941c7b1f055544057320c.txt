@@ -1,0 +1,3 @@
+Asha Rao
+Skills: Python, SQL, React.js, Git
+Project: Tracker (Postgres, JS)

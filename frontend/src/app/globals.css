@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  PrepPath design tokens.
+  Palette: warm "paper" neutrals + deep pine accent + ochre highlight.
+  Semantic colours are separate from the accent so status never reads as brand.
+*/
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #efede7;
+  --surface-3: #e6e3db;
+  --border: #dedad0;
+  --border-strong: #c9c4b7;
+  --text: #1c1f1d;
+  --text-2: #4a4f4b;
+  --muted: #7a7f79;
+  --accent: #1d5c4d;
+  --accent-hover: #174b3f;
+  --accent-soft: #dfece6;
+  --accent-fg: #f4faf7;
+  --ochre: #a86a14;
+  --ochre-soft: #f5e8d2;
+  --ok: #2f7a4a;
+  --ok-soft: #e0efe4;
+  --warn: #9a6a00;
+  --warn-soft: #f6ecd0;
+  --danger: #b3372b;
+  --danger-soft: #f7e1de;
+  --info: #2c5f8a;
+  --info-soft: #dfe9f3;
+  --ring: #1d5c4d55;
+  --shadow: 0 1px 0 rgb(28 31 29 / 0.04), 0 1px 2px rgb(28 31 29 / 0.06);
+  /* Chart marks: validated categorical pair (dataviz validator, light surface) */
+  --chart-1: #00846a;
+  --chart-2: #b8690a;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0f1211;
+  --surface: #151918;
+  --surface-2: #1b201f;
+  --surface-3: #232927;
+  --border: #29302e;
+  --border-strong: #37403d;
+  --text: #e6e9e7;
+  --text-2: #b7bdb9;
+  --muted: #858d89;
+  --accent: #5fb89c;
+  --accent-hover: #74c7ac;
+  --accent-soft: #1b3029;
+  --accent-fg: #0c1512;
+  --ochre: #d9a04a;
+  --ochre-soft: #33281a;
+  --ok: #6cc08a;
+  --ok-soft: #19291f;
+  --warn: #d8b04f;
+  --warn-soft: #2e2716;
+  --danger: #e8776a;
+  --danger-soft: #34201d;
+  --info: #7fb0dc;
+  --info-soft: #1a2633;
+  --ring: #5fb89c66;
+  --shadow: 0 1px 0 rgb(0 0 0 / 0.2);
+  --chart-1: #179579;
+  --chart-2: #bf7a12;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-2: var(--text-2);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-ochre: var(--ochre);
+  --color-ochre-soft: var(--ochre-soft);
+  --color-ok: var(--ok);
+  --color-ok-soft: var(--ok-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* Type scale (dense, tool-first) */
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.8125rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem;
+  --text-base--line-height: 1.375rem;
+  --text-lg: 1rem;
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2rem;
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  -webkit-font-smoothing: antialiased;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 1px;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
