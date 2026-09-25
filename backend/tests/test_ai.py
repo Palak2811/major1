@@ -464,7 +464,8 @@ async def test_transient_overload_retries_then_falls_back_to_other_model(client,
     cm = await login(client, "content_manager@t.dev")
     await kb(client, cm)
     h = await register(client)
-    monkeypatch.setattr(llm.asyncio, "sleep", lambda *_: __import__("asyncio").sleep(0))
+    real_sleep = llm.asyncio.sleep  # capture before patching, or the stub calls itself
+    monkeypatch.setattr(llm.asyncio, "sleep", lambda *_: real_sleep(0))
     strong = llm.get_settings().llm_model_strong
     calls = []
 
